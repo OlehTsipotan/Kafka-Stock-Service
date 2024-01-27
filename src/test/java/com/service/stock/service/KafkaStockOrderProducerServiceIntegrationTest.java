@@ -1,13 +1,12 @@
 package com.service.stock.service;
 
-import com.domain.avro.model.AvroOrder;
-import com.domain.avro.model.AvroProduct;
+import com.service.avro.model.AvroOrder;
+import com.service.avro.model.AvroProduct;
 import com.service.stock.container.SchemaRegistryContainer;
 import com.service.stock.converter.OrderToAvroOrderConverter;
 import com.service.stock.model.Order;
 import com.service.stock.model.OrderStatus;
 import com.service.stock.model.Product;
-import com.service.stock.container.SchemaRegistryContainer;
 import io.confluent.kafka.serializers.KafkaAvroDeserializer;
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
 import org.apache.avro.generic.GenericRecord;

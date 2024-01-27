@@ -1,6 +1,6 @@
 package com.service.stock.service;
 
-import com.domain.avro.model.AvroOrder;
+import com.service.avro.model.AvroOrder;
 import com.service.stock.converter.ConverterService;
 import com.service.stock.exception.ServiceException;
 import com.service.stock.model.Order;

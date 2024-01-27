@@ -1,8 +1,8 @@
 package com.service.stock.consumer;
 
-import com.domain.avro.model.AvroOrder;
-import com.domain.avro.model.AvroOrderStatus;
-import com.domain.avro.model.AvroProduct;
+import com.service.avro.model.AvroOrder;
+import com.service.avro.model.AvroOrderStatus;
+import com.service.avro.model.AvroProduct;
 import com.service.stock.container.SchemaRegistryContainer;
 import com.service.stock.service.OrderProcessingService;
 import io.confluent.kafka.serializers.KafkaAvroDeserializer;

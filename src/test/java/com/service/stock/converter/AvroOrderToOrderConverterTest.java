@@ -1,8 +1,8 @@
 package com.service.stock.converter;
 
-import com.domain.avro.model.AvroOrder;
-import com.domain.avro.model.AvroOrderStatus;
-import com.domain.avro.model.AvroProduct;
+import com.service.avro.model.AvroOrder;
+import com.service.avro.model.AvroOrderStatus;
+import com.service.avro.model.AvroProduct;
 import com.service.stock.model.Order;
 import com.service.stock.model.Product;
 import org.junit.jupiter.api.BeforeEach;

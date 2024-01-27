@@ -1,6 +1,6 @@
 package com.service.stock.service;
 
-import com.domain.avro.model.AvroOrder;
+import com.service.avro.model.AvroOrder;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
