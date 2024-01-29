@@ -18,7 +18,7 @@ It is responsible for the following tasks:
 - [Credits](#credits)
 
 ## Project Description
-The Spring Kafka Order System is designed to provide a flexible and robust API for creating orders and processing their payments, stock.
+The Stock Service is designed to provide a flexible and robust API for managing the stock of products as a part of the Microservice.
 There is REST API for managing product (CRUD operations). It is communicating with [***Order Service***](https://github.com/OlehTsipotan/Kafka-Order-Service/) using Apache Kafka.
 ### How it works
 Order communication schema:
