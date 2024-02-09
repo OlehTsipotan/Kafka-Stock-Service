@@ -41,7 +41,7 @@ public class ItemControllerTest {
         itemDto.setStockAvailable(1000L);
         itemDto.setStockReserved(1000L);
 
-        mockMvc.perform(post("/items").contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(post("/api/v1/items").contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(itemDto))).andExpect(status().isCreated())
                 .andExpect(content().string("1"));
 
@@ -52,7 +52,7 @@ public class ItemControllerTest {
     @ParameterizedTest
     @NullSource
     public void create_whenItemDTOIsNull_statusIsBadRequest(ItemDto itemDto) throws Exception {
-        mockMvc.perform(post("/items").contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(post("/api/v1/items").contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(itemDto))).andExpect(status().isBadRequest());
 
         verifyNoInteractions(itemService);
@@ -60,7 +60,7 @@ public class ItemControllerTest {
 
     @Test
     public void delete_success() throws Exception {
-        mockMvc.perform(delete("/items/1")).andExpect(status().isNoContent());
+        mockMvc.perform(delete("/api/v1/items/1")).andExpect(status().isNoContent());
 
         verify(itemService).deleteById(1L);
         verifyNoMoreInteractions(itemService);
@@ -68,7 +68,7 @@ public class ItemControllerTest {
 
     @Test
     public void delete_whenItemIdIsInvalid_statusIsBadRequest() throws Exception {
-        mockMvc.perform(delete("/items/invalid")).andExpect(status().isBadRequest());
+        mockMvc.perform(delete("/api/v1/items/invalid")).andExpect(status().isBadRequest());
 
         verifyNoInteractions(itemService);
     }
@@ -86,7 +86,7 @@ public class ItemControllerTest {
 
         when(itemService.update(any(ItemDto.class), any(Long.class))).thenReturn(itemDTOToDisplay);
 
-        mockMvc.perform(patch("/items/1").contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(patch("/api/v1/items/1").contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(itemDto))).andExpect(status().isOk())
                 .andExpect(content().json(objectMapper.writeValueAsString(itemDTOToDisplay)));
 
@@ -97,7 +97,7 @@ public class ItemControllerTest {
     @ParameterizedTest
     @NullSource
     public void update_whenItemDTOIsNull_statusIsBadRequest(ItemDto itemDto) throws Exception {
-        mockMvc.perform(patch("/items/1").contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(patch("/api/v1/items/1").contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(itemDto))).andExpect(status().isBadRequest());
 
         verifyNoInteractions(itemService);
@@ -110,7 +110,7 @@ public class ItemControllerTest {
         itemDto.setStockAvailable(1000L);
         itemDto.setStockReserved(1000L);
 
-        mockMvc.perform(patch("/items/invalid").contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(patch("/api/v1/items/invalid").contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(itemDto))).andExpect(status().isBadRequest());
 
         verifyNoInteractions(itemService);
@@ -125,7 +125,7 @@ public class ItemControllerTest {
 
         when(itemService.findByIdAsDto(any(Long.class))).thenReturn(itemDto);
 
-        mockMvc.perform(get("/items/1")).andExpect(status().isOk())
+        mockMvc.perform(get("/api/v1/items/1")).andExpect(status().isOk())
                 .andExpect(content().json(objectMapper.writeValueAsString(itemDto)));
 
         verify(itemService).findByIdAsDto(1L);
@@ -134,7 +134,7 @@ public class ItemControllerTest {
 
     @Test
     public void getById_whenItemIdIsInvalid_statusIsBadRequest() throws Exception {
-        mockMvc.perform(get("/items/invalid")).andExpect(status().isBadRequest());
+        mockMvc.perform(get("/api/v1/items/invalid")).andExpect(status().isBadRequest());
 
         verifyNoInteractions(itemService);
     }
@@ -150,7 +150,7 @@ public class ItemControllerTest {
 
         when(itemService.findAll(any())).thenReturn(dtoSearchResponse);
 
-        mockMvc.perform(get("/items")).andExpect(status().isOk())
+        mockMvc.perform(get("/api/v1/items")).andExpect(status().isOk())
                 .andExpect(content().json(objectMapper.writeValueAsString(dtoSearchResponse)));
 
         verify(itemService).findAll(any());
@@ -160,7 +160,7 @@ public class ItemControllerTest {
     // It is not depends on the parameter selection.
     @Test
     public void getAll_whenLimitIsInvalid_statusIsBadRequest() throws Exception {
-        mockMvc.perform(get("/items?limit=invalid")).andExpect(status().isBadRequest());
+        mockMvc.perform(get("/api/v1/items?limit=invalid")).andExpect(status().isBadRequest());
 
         verifyNoInteractions(itemService);
     }
